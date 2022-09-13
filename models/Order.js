@@ -32,7 +32,20 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
-    Order.belongsToMany(db.Product, { through: db.OrderItem });
+    Order.belongsToMany(db.Product, {
+      through: 'order_items',
+      timestamps: false,
+      foreignKey: {
+        allowNull: false,
+        name: 'orderId',
+        field: 'order_id'
+      },
+      otherKey: {
+        allowNull: false,
+        name: 'productId',
+        field: 'product_id'
+      }
+    });
   };
 
   return Order;

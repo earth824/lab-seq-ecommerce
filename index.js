@@ -4,7 +4,8 @@ const {
   Supplier,
   Employee,
   Order,
-  Product
+  Product,
+  OrderItem
 } = require('./models');
 
 const run = async () => {
@@ -23,7 +24,8 @@ const run = async () => {
   //     Customer
   //   ]
   // });
-  const data = await Customer.findAll({ include: [Employee] });
+  const data = await Employee.findAll({ include: [Customer, Order] });
+  // const data = await OrderItem.findAll({ where: { id: 1 } });
   console.log(JSON.stringify(data, null, 2));
 };
 

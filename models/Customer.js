@@ -20,16 +20,17 @@ module.exports = (sequelize, DataTypes) => {
         name: 'customerId'
       }
     });
-
     Customer.belongsToMany(db.Employee, {
-      through: db.Order,
+      through: 'orders',
+      timestamps: false,
       foreignKey: {
         allowNull: false,
-        name: 'customerId'
+        name: 'customerId',
+        field: 'customer_id'
       },
       otherKey: {
-        allowNull: false,
-        name: 'employeeId'
+        name: 'employeeId',
+        field: 'employee_id'
       }
     });
   };
